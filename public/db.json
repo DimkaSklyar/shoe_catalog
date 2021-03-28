@@ -1,0 +1,59 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Adidas Running Alphabounce Beyond",
+      "images": [
+        "./img/products/product-1.jpg",
+        "./img/products/product-1_2.jpg"
+      ],
+      "price": "4000 - 5000",
+      "categories": 1
+    },
+    {
+      "id": 2,
+      "name": "Nike Running Alphabounce Beyond",
+      "images": [
+        "./img/products/product-1.jpg",
+        "./img/products/product-1_2.jpg"
+      ],
+      "price": "6000 - 7000",
+      "categories": 2
+    },
+    {
+      "id": 3,
+      "name": "Nike Running Alphabounce Beyond",
+      "images": [
+        "./img/products/product-1.jpg",
+        "./img/products/product-1_2.jpg"
+      ],
+      "price": "6000 - 7000",
+      "categories": 2
+    },
+    {
+      "id": 4,
+      "name": "Nike Running Alphabounce Beyond",
+      "images": [
+        "./img/products/product-1.jpg",
+        "./img/products/product-1_2.jpg"
+      ],
+      "price": "6000 - 7000",
+      "categories": 2
+    }
+  ],
+  "slides": [
+    { "id": 1, "path": "./img/slide-1.jpg" },
+    { "id": 2, "path": "./img/slide-2.jpg" },
+    { "id": 3, "path": "./img/slide-3.jpg" }
+  ],
+  "categories": [
+    { "id": 1, "name": "Кроссовки", "link": "/sneakers" },
+    { "id": 2, "name": "Ботинки", "link": "/boots" },
+    { "id": 3, "name": "Бутсы", "link": "/cleats" },
+    { "id": 4, "name": "Туризм", "link": "/tourism" },
+    { "id": 5, "name": "Бег", "link": "/running" },
+    { "id": 6, "name": "Тренировки", "link": "/training" },
+    { "id": 7, "name": "Новики", "link": "/new-product" },
+    { "id": 8, "name": "Кеды", "link": "/keds" }
+  ]
+}
