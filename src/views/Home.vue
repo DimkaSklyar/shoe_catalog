@@ -136,6 +136,7 @@
         </form>
       </div>
     </section>
+    {{ categories }}
   </div>
 </template>
 
@@ -156,6 +157,11 @@ export default {
       newProducts: [],
     };
   },
+  computed: {
+    categories() {
+      return this.$store.state.categories;
+    },
+  },
   components: {
     Slider,
     Categories,
@@ -165,6 +171,7 @@ export default {
     Button,
   },
   async mounted() {
+    this.$store.dispatch("getCategories");
     const { data } = await axios.get("http://localhost:3001/products?_limit=4");
     this.newProducts = data;
   },

@@ -33,6 +33,10 @@ export default {
       LOGO,
     };
   },
+  mounted() {
+    console.log(1);
+    this.$store.dispatch("getAllProduct");
+  },
 };
 </script>
 <style lang="scss">
