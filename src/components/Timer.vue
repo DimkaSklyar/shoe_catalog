@@ -1,6 +1,6 @@
 <template>
   <div
-    class="timer flex space-x-10 text-7xl font-extrabold text-blue-600 text-center"
+    class="timer flex space-x-10 text-6xl font-extrabold text-blue-600 text-center"
   >
     <div class="days">
       <div class="count">

@@ -9,9 +9,9 @@
           @mouseover="isHover = true"
           @mouseleave="isHover = false"
         >
-          <img src="../../public/img/products/product-1.jpg" alt="" />
+          <img :src="product.images[0]" alt="" />
           <img
-            src="../../public/img/products/product-1_2.jpg"
+            :src="product.images[1]"
             alt=""
             class="absolute top-0 left-0 transition-all duration-700"
             :class="isHover ? 'opacity-1' : 'opacity-0'"

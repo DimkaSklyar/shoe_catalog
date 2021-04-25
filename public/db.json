@@ -12,32 +12,62 @@
     },
     {
       "id": 2,
-      "name": "Nike Running Alphabounce Beyond",
+      "name": "Converse Chuck Taylor All Star Leather Hi",
       "images": [
-        "./img/products/product-1.jpg",
-        "./img/products/product-1_2.jpg"
+        "./img/products/product-2.jpg",
+        "./img/products/product-2_2.jpg"
       ],
       "price": "6000 - 7000",
       "categories": 2
     },
     {
       "id": 3,
-      "name": "Nike Running Alphabounce Beyond",
+      "name": "New Balance Fuelcore Nergize",
       "images": [
-        "./img/products/product-1.jpg",
-        "./img/products/product-1_2.jpg"
+        "./img/products/product-3.jpg",
+        "./img/products/product-3_2.jpg"
       ],
-      "price": "6000 - 7000",
+      "price": "2000 - 6000",
       "categories": 2
     },
     {
       "id": 4,
-      "name": "Nike Running Alphabounce Beyond",
+      "name": "Adidas Originals Pharrell Williams Tennis Human",
       "images": [
-        "./img/products/product-1.jpg",
-        "./img/products/product-1_2.jpg"
+        "./img/products/product-4.jpg",
+        "./img/products/product-4_2.jpg"
       ],
-      "price": "6000 - 7000",
+      "price": "3000 - 3500",
+      "categories": 2
+    },
+    {
+      "id": 5,
+      "name": "Champion 93 Eighteen",
+      "images": [
+        "./img/products/product-5.jpg",
+        "./img/products/product-5_2.jpg"
+      ],
+      "price": "2000 - 5500",
+      "categories": 2
+    },
+    {
+      "id": 6,
+      "name": "Champion Rally Pro",
+      "images": [
+        "./img/products/product-6.jpg",
+        "./img/products/product-6_2.jpg"
+      ],
+      "price": "2000 - 5500",
+      "categories": 2
+    },
+    {
+      "id": 7,
+      "name": "Columbia Bahama Vent Relaxed Pfg",
+      "images": [
+        "./img/products/product-7.jpg",
+        "./img/products/product-7_2.jpg"
+      ],
+      "price": "5000 - 6000",
       "categories": 2
     }
   ],
@@ -55,5 +85,13 @@
     { "id": 6, "name": "Тренировки", "link": "/training" },
     { "id": 7, "name": "Новики", "link": "/new-product" },
     { "id": 8, "name": "Кеды", "link": "/keds" }
+  ],
+  "brands": [
+    { "id": 1, "name": "Adidas", "path": "./img/brands/brands-1.jpg" },
+    { "id": 2, "name": "Adidas", "path": "./img/brands/brands-2.jpg" },
+    { "id": 3, "name": "Adidas", "path": "./img/brands/brands-3.jpg" },
+    { "id": 4, "name": "Adidas", "path": "./img/brands/brands-4.jpg" },
+    { "id": 5, "name": "Adidas", "path": "./img/brands/brands-5.jpg" },
+    { "id": 6, "name": "Adidas", "path": "./img/brands/brands-6.jpg" }
   ]
 }

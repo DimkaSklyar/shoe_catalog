@@ -39,7 +39,103 @@
         />
       </div>
     </section>
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <section class="pb-20">
+      <div class="p-10 bg-blue-600">
+        <ListBrands />
+      </div>
+    </section>
+    <section>
+      <div class="grid gap-7 grid-rows-2 grid-flow-col grid-cols-2">
+        <div>
+          <div
+            class="banner banner-1 shadow-md p-20 flex flex-col items-end h-full"
+          >
+            <strong class="text-2xl uppercase">Наслаждайтесь скидкой</strong>
+            <p class="text-2xl font-light mb-3">На Все Кроссовки для Бега</p>
+            <router-link to="/"><Button text="SHOP NOW" /> </router-link>
+          </div>
+        </div>
+        <div>
+          <div class="banner banner-2 shadow-md p-20 h-full">
+            <strong class="font-bold uppercase text-2xl mb-5 block"
+              >Наши Бестселлеры</strong
+            >
+            <router-link to="/" class="inline-block"
+              ><Button text="SHOP NOW" />
+            </router-link>
+          </div>
+        </div>
+        <div class="row-span-2">
+          <div
+            class="banner banner-3 shadow-md p-20 h-full flex flex-col justify-center"
+          >
+            <strong class="font-light text-3xl uppercase"
+              >Лучшее в одном шаге</strong
+            >
+            <p
+              class="font-extrabold text-7xl text-stroke text-transparent leading-none mb-5"
+            >
+              Просто взгляни
+            </p>
+            <router-link to="/"><Button text="SHOP NOW" /> </router-link>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-20">
+      <div
+        class="section__title text-center uppercase font-semibold text-blue-600 text-xl mb-8"
+      >
+        Лидеры продаж
+      </div>
+      <div class="grid grid-cols-4 gap-3">
+        <CarcProduct
+          v-for="item in newProducts"
+          :key="item.id"
+          :product="item"
+        />
+      </div>
+    </section>
+    <section>
+      <div class="grid grid-cols-2">
+        <div>
+          <div
+            class="banner banner-4 px-20 py-5 h-full justify-end flex flex-col"
+          >
+            <strong class="uppercase font-normal text-3xl">Выбирай для</strong>
+            <p class="font-bold text-2xl mb-5 uppercase">
+              Спорта, ходьбы или прогулок
+            </p>
+            <router-link to="/"><Button text="SHOP NOW" /> </router-link>
+          </div>
+        </div>
+        <div>
+          <div
+            class="banner banner-5 shadow-2xl px-20 py-28 h-full flex flex-col justify-center"
+          >
+            <p
+              class="font-extrabold text-7xl text-stroke text-transparent leading-none mb-5"
+            >
+              Самые лучшие модели
+            </p>
+            <router-link to="/"><Button text="SHOP NOW" /> </router-link>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-20">
+      <div class="bg-blue-600 py-8 px-10">
+        <form class="grid grid-cols-2 items-center">
+          <p class="text-white">
+            Подпишитесь на рассылку,чтобы получать предложения и многое другое
+          </p>
+          <div class="flex items-center">
+            <input type="mail" class="input" />
+            <Button text="Subscribe" :isWhite="true" />
+          </div>
+        </form>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -49,6 +145,8 @@ import Slider from "../components/Slider.vue";
 import Categories from "../components/categories.vue";
 import Timer from "../components/Timer.vue";
 import CarcProduct from "../components/CarcProduct.vue";
+import ListBrands from "../components/listBrands.vue";
+import Button from "../components/button/Button.vue";
 // @ is an alias to /src
 
 export default {
@@ -63,6 +161,8 @@ export default {
     Categories,
     Timer,
     CarcProduct,
+    ListBrands,
+    Button,
   },
   async mounted() {
     const { data } = await axios.get("http://localhost:3001/products?_limit=4");
@@ -74,5 +174,28 @@ export default {
 <style lang="scss">
 .text-stroke {
   -webkit-text-stroke: #1d73dd 2px;
+}
+.banner {
+  background-repeat: no-repeat;
+  background-size: cover;
+  &-1 {
+    background-image: url("../../public/img/banner/banner-1.jpg");
+  }
+  &-2 {
+    background-image: url("../../public/img/banner/banner-2.jpg");
+  }
+  &-3 {
+    background-image: url("../../public/img/banner/banner-3.jpg");
+  }
+  &-4 {
+    background-image: url("../../public/img/banner/banner-4.jpg");
+  }
+  &-5 {
+    background-image: url("../../public/img/banner/banner-5.jpg");
+  }
+}
+.input {
+  padding: 12px;
+  width: 100%;
 }
 </style>
