@@ -12,11 +12,12 @@
             <h2 class="font-bold uppercase tracking-widest mb-3">Категории</h2>
             <ul>
               <li v-for="category in categories" :key="category.id">
-                <router-link
-                  :to="category.link"
-                  class="text-sm hover:text-blue-600"
-                  >{{ category.name }}</router-link
+                <p
+                  @click="setCategories(category.id)"
+                  class="text-sm hover:text-blue-600 cursor-pointer"
                 >
+                  {{ category.name }}
+                </p>
               </li>
             </ul>
           </div>
@@ -36,7 +37,18 @@
                   <option value="price_desc">По цене: убыванию</option>
                 </select>
               </div>
-              <p>Количество товаров: {{ productCount }}</p>
+              <div>
+                Показать:
+                <select
+                  v-model="showSelected"
+                  @change="showCount()"
+                  class="border"
+                >
+                  <option value="8">8</option>
+                  <option value="12">12</option>
+                  <option value="16">16</option>
+                </select>
+              </div>
             </div>
             <div class="grid auto-rows-auto grid-cols-4">
               <CardProduct
@@ -45,6 +57,33 @@
                 :key="product.id"
                 class="mb-5 mx-2"
               />
+            </div>
+            <div class="border p-3 mb-6 flex items-center justify-between">
+              <p>1 - {{ showSelected }} товаров из {{ productCount }}</p>
+              <div>
+                <div class="text-xs" v-if="pagination.length > 0">
+                  <button
+                    @click="setPage(params._page - 1)"
+                    :disabled="params._page === 1"
+                  >
+                    Назад
+                  </button>
+                  <button
+                    v-for="(item, index) in pagination.length - 1"
+                    :key="index"
+                    @click="setPage(index + 1)"
+                    class="hover:text-blue-600 inline-block p-0.5 w-6 h-6 mx-1"
+                  >
+                    {{ index + 1 }}
+                  </button>
+                  <button
+                    @click="setPage(params._page - 1)"
+                    :disabled="params._page === 1"
+                  >
+                    Далее
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -66,14 +105,20 @@ export default {
     productCount() {
       return this.$store.getters.getProductCount;
     },
+    pagination() {
+      return this.$store.getters.getPagination;
+    },
   },
   data() {
     return {
       sortSelected: "",
+      showSelected: 8,
       params: {
-        _limit: 10,
+        _limit: 8,
         _sort: "",
         _order: "",
+        _page: 1,
+        _embed: "",
       },
     };
   },
@@ -83,12 +128,24 @@ export default {
         this.params._sort = this.sortSelected.split("_")[0];
         this.params._order = this.sortSelected.split("_")[1];
       }
-      this.params._order = this.$store.dispatch("getProduct", this.params);
+      this.$store.dispatch("getProduct", this.params);
+    },
+    showCount() {
+      this.params._limit = this.showSelected;
+      this.$store.dispatch("getProduct", this.params);
+    },
+    setPage(page) {
+      this.params._page = page;
+      this.$store.dispatch("getProduct", this.params);
+    },
+    setCategories(idCategories) {
+      this.params = { categorieId: idCategories, _page: 1 };
+      this.$store.dispatch("getProduct", this.params);
     },
   },
   mounted() {
     this.$store.dispatch("getCategories");
-    this.$store.dispatch("getProduct", { _limit: 5, _page: 1 });
+    this.$store.dispatch("getProduct", { _limit: 8, _page: 1 });
   },
   components: {
     CardProduct,

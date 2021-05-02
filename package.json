@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@iconify/icons-akar-icons": "^1.1.9",
+    "@iconify/icons-ant-design": "^1.1.0",
     "@iconify/icons-bi": "^1.1.4",
     "@iconify/icons-bx": "^1.1.0",
     "@iconify/icons-carbon": "^1.1.3",

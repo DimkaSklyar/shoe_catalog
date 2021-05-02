@@ -3,8 +3,9 @@
     class="card p-4 hover:shadow-2xl transition-all duration-500 shadow-lg rounded"
   >
     <div class="card__inner">
-      <router-link to="/">
+      <div class="cursor-pointer">
         <div
+          @click="showModal"
           class="cart__img p-5 relative"
           @mouseover="isHover = true"
           @mouseleave="isHover = false"
@@ -17,40 +18,36 @@
             :class="isHover ? 'opacity-1' : 'opacity-0'"
           />
         </div>
-      </router-link>
+      </div>
       <div class="card__info flex justify-between relative">
-        <router-link to="/" class="flex"
-          ><div class="cart__name leading-none text-sm text-gray-700">
+        <div class="flex cursor-pointer">
+          <div class="cart__name leading-none text-sm text-gray-700">
             {{ product.name }}
           </div>
-        </router-link>
+        </div>
         <div class="absolute z-10 bottom-12 right-0 flex">
           <div class="card__option cursor-pointer mr-1">
             <IconifyIcon
+              @click="showModal"
               :icon="icons.searchPlus"
               :style="{ color: '#2563eb', fontSize: '16px' }"
             />
           </div>
           <div class="card__option cursor-pointer">
             <IconifyIcon
-              :icon="icons.heartFill"
+              @click="addWishList(product)"
+              :icon="product.wishList ? icons.heartFill : icons.heartOutlined"
               :style="{ color: '#2563eb', fontSize: '16px' }"
             />
           </div>
         </div>
-        <button
-          class="bg-blue-600 p-3 text-white uppercase font-semibold hover:shadow-md transition-all"
-        >
-          <IconifyIcon
-            :icon="icons.bxGitCompare"
-            :style="{ color: '#ffffff', fontSize: '20px' }"
-          />
-        </button>
+        <Comparison :product="product" :id="product.id" />
       </div>
       <div class="price text-sm text-blue-600 font-semibold">
         {{ product.price }}р.
       </div>
     </div>
+    <Modal :product="product" v-if="isShowModal" @showModal="showModal" />
   </div>
 </template>
 <script>
@@ -58,21 +55,40 @@ import IconifyIcon from "@iconify/vue";
 import bxGitCompare from "@iconify/icons-bx/bx-git-compare";
 import heartFill from "@iconify/icons-bi/heart-fill";
 import searchPlus from "@iconify/icons-fe/search-plus";
+import heartOutlined from "@iconify/icons-ant-design/heart-outlined";
+import Modal from "./Modal.vue";
+import Comparison from "./Comparison.vue";
+
 export default {
   name: "CardProduct",
   props: ["product"],
   components: {
     IconifyIcon,
+    Modal,
+    Comparison,
   },
   data() {
     return {
       isHover: false,
+      isShowModal: false,
       icons: {
         bxGitCompare,
         heartFill,
         searchPlus,
+        heartOutlined,
       },
     };
+  },
+  methods: {
+    showModal() {
+      this.isShowModal = !this.isShowModal;
+    },
+    addWishList(product) {
+      this.$store.dispatch("setWishList", {
+        id: product.id,
+        isWish: !product.wishList,
+      });
+    },
   },
 };
 </script>

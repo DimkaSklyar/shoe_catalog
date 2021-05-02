@@ -66,7 +66,7 @@
             <router-link to="/">В сравнение</router-link>
           </li>
           <li class="text-sm hover:text-blue-600">
-            <router-link to="/">Историй сравнений</router-link>
+            <router-link to="/WishList">Избранное</router-link>
           </li>
         </ul>
       </div>
