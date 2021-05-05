@@ -9,7 +9,7 @@
       ],
       "price": "6000 - 7000",
       "wishList": false,
-      "categorieId": 3,
+      "categoryId": 3,
       "brandId": 1
     },
     {
@@ -21,7 +21,7 @@
       ],
       "price": "6000 - 7000",
       "wishList": true,
-      "categorieId": 3,
+      "categoryId": 3,
       "brandId": 2
     },
     {
@@ -32,8 +32,8 @@
         "/img/products/product-3_2.jpg"
       ],
       "price": "2000 - 6000",
-      "wishList": false,
-      "categorieId": 2,
+      "wishList": true,
+      "categoryId": 2,
       "brandId": 4
     },
     {
@@ -45,7 +45,7 @@
       ],
       "price": "3000 - 3500",
       "wishList": false,
-      "categorieId": 2,
+      "categoryId": 2,
       "brandId": 1
     },
     {
@@ -56,8 +56,8 @@
         "/img/products/product-5_2.jpg"
       ],
       "price": "2000 - 5500",
-      "wishList": false,
-      "categorieId": 2,
+      "wishList": true,
+      "categoryId": 2,
       "brandId": 4
     },
     {
@@ -69,7 +69,7 @@
       ],
       "price": "2000 - 5500",
       "wishList": true,
-      "categorieId": 2,
+      "categoryId": 2,
       "brandId": 3
     },
     {
@@ -81,7 +81,7 @@
       ],
       "price": "5000 - 6000",
       "wishList": false,
-      "categorieId": 2,
+      "categoryId": 2,
       "brandId": 2
     },
     {
@@ -93,7 +93,7 @@
       ],
       "price": "5000 - 6000",
       "wishList": false,
-      "categorieId": 2,
+      "categoryId": 2,
       "brandId": 1
     },
     {
@@ -105,7 +105,7 @@
       ],
       "price": "5000 - 6000",
       "wishList": true,
-      "categorieId": 2,
+      "categoryId": 2,
       "brandId": 2
     }
   ],

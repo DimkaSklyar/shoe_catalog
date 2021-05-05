@@ -32,11 +32,7 @@
         Новики
       </div>
       <div class="grid grid-cols-4 gap-3">
-        <CarcProduct
-          v-for="item in newProducts"
-          :key="item.id"
-          :product="item"
-        />
+        <CarcProduct v-for="item in products" :key="item.id" :product="item" />
       </div>
     </section>
     <section class="pb-20">
@@ -93,11 +89,7 @@
         Лидеры продаж
       </div>
       <div class="grid grid-cols-4 gap-3">
-        <CarcProduct
-          v-for="item in newProducts"
-          :key="item.id"
-          :product="item"
-        />
+        <CarcProduct v-for="item in products" :key="item.id" :product="item" />
       </div>
     </section>
     <section>
@@ -148,22 +140,15 @@
 </template>
 
 <script>
-import axios from "axios";
 import Slider from "../components/Slider.vue";
 import Categories from "../components/categories.vue";
 import Timer from "../components/Timer.vue";
 import CarcProduct from "../components/CarcProduct.vue";
 import ListBrands from "../components/listBrands.vue";
 import Button from "../components/button/Button.vue";
-// @ is an alias to /src
 
 export default {
   name: "Home",
-  data() {
-    return {
-      newProducts: [],
-    };
-  },
   components: {
     Slider,
     Categories,
@@ -172,10 +157,18 @@ export default {
     ListBrands,
     Button,
   },
+  computed: {
+    products() {
+      return this.$store.getters.getProducts;
+    },
+  },
   async mounted() {
     this.$store.dispatch("getCategories");
-    const { data } = await axios.get("http://localhost:3001/products?_limit=4");
-    this.newProducts = data;
+    await this.$store.dispatch("getProduct", {
+      ...this.params,
+      _limit: 4,
+      _page: 1,
+    });
   },
 };
 </script>

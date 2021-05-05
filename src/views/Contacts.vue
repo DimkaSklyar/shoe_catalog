@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto my-10 border-b mb-14">
     <h1 class="text-center text-3xl text-black uppercase font-semibold mb-10">
-      О нас
+      Контакты
     </h1>
     <div class="grid grid-cols-3 gap-28 mb-20">
       <div>

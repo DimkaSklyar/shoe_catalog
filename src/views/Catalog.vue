@@ -12,12 +12,12 @@
             <h2 class="font-bold uppercase tracking-widest mb-3">Категории</h2>
             <ul>
               <li v-for="category in categories" :key="category.id">
-                <p
-                  @click="setCategories(category.id)"
+                <router-link
+                  :to="category.link"
                   class="text-sm hover:text-blue-600 cursor-pointer"
                 >
                   {{ category.name }}
-                </p>
+                </router-link>
               </li>
             </ul>
             <h2 class="font-bold uppercase tracking-widest mb-3 mt-3">
@@ -138,7 +138,30 @@ export default {
       },
     };
   },
+  watch: {
+    // при изменениях маршрута запрашиваем данные снова
+    // eslint-disable-next-line prettier/prettier
+    $route: "fetchData",
+  },
   methods: {
+    async fetchData() {
+      await this.$store.dispatch("getCategories");
+      const { category } = this.$route.params;
+      if (category) {
+        const categorieId = this.categories.find((cat) =>
+          cat.link.includes(category)
+        ).id;
+
+        this.params = { categorieId, _page: 1, _limit: 8 };
+        this.$store.dispatch("getProduct", {
+          ...this.params,
+          _limit: 8,
+          _page: 1,
+        });
+      } else {
+        this.$store.dispatch("getProduct", { _limit: 8, _page: 1 });
+      }
+    },
     sorting() {
       if (this.sortSelected) {
         this.params._sort = this.sortSelected.split("_")[0];
@@ -155,11 +178,11 @@ export default {
       this.$store.dispatch("getProduct", this.params);
     },
     setCategories(idCategories) {
-      this.params = { categorieId: idCategories, _page: 1 };
+      this.params = { categorieId: idCategories, _page: 1, _limit: 8 };
       this.$store.dispatch("getProduct", this.params);
     },
     setBrands(idBrands) {
-      this.params = { brandId: idBrands, _page: 1 };
+      this.params = { brandId: idBrands, _page: 1, _limit: 8 };
       this.$store.dispatch("getProduct", this.params);
     },
   },
@@ -172,7 +195,7 @@ export default {
         cat.link.includes(category)
       ).id;
 
-      this.params = { categorieId, _page: 1 };
+      this.params = { categorieId, _page: 1, _limit: 8 };
       this.$store.dispatch("getProduct", {
         ...this.params,
         _limit: 8,
