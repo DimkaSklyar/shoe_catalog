@@ -1,11 +1,11 @@
 <template>
   <ul class="flex items-center justify-between p-7 bg-white">
     <li v-for="brand in brands" :key="brand.id">
-      <a href="/">
+      <router-link :to="brand.link">
         <figure class="brand">
           <img :src="brand.path" :alt="brand.name" />
         </figure>
-      </a>
+      </router-link>
     </li>
   </ul>
 </template>

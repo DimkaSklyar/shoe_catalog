@@ -11,11 +11,6 @@ export const MAIN_MANU = [
     link: "/catalog",
   },
   {
-    id: 2,
-    name: "Распродажа",
-    link: "/sale",
-  },
-  {
     id: 3,
     name: "Контакты",
     link: "/contacts",

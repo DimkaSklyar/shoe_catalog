@@ -4,195 +4,206 @@
       "id": 1,
       "name": "Converse Chuck Taylor All Star Leather Hi",
       "images": [
-        "./img/products/product-2.jpg",
-        "./img/products/product-2_2.jpg"
+        "/img/products/product-2.jpg",
+        "/img/products/product-2_2.jpg"
       ],
       "price": "6000 - 7000",
       "wishList": false,
-      "categorieId": 3
+      "categorieId": 3,
+      "brandId": 1
     },
     {
       "id": 2,
       "name": "Converse Chuck Taylor All Star Leather Hi",
       "images": [
-        "./img/products/product-2.jpg",
-        "./img/products/product-2_2.jpg"
+        "/img/products/product-2.jpg",
+        "/img/products/product-2_2.jpg"
       ],
       "price": "6000 - 7000",
       "wishList": true,
-      "categorieId": 3
+      "categorieId": 3,
+      "brandId": 2
     },
     {
       "id": 3,
       "name": "New Balance Fuelcore Nergize",
       "images": [
-        "./img/products/product-3.jpg",
-        "./img/products/product-3_2.jpg"
+        "/img/products/product-3.jpg",
+        "/img/products/product-3_2.jpg"
       ],
       "price": "2000 - 6000",
-      "wishList": true,
+      "wishList": false,
       "categorieId": 2,
-      "body": {
-        "wishList": true
-      }
+      "brandId": 4
     },
     {
       "id": 4,
       "name": "Adidas Originals Pharrell Williams Tennis Human",
       "images": [
-        "./img/products/product-4.jpg",
-        "./img/products/product-4_2.jpg"
+        "/img/products/product-4.jpg",
+        "/img/products/product-4_2.jpg"
       ],
       "price": "3000 - 3500",
       "wishList": false,
       "categorieId": 2,
-      "body": {
-        "wishList": true
-      },
-      "completed": false
+      "brandId": 1
     },
     {
       "id": 5,
       "name": "Champion 93 Eighteen",
       "images": [
-        "./img/products/product-5.jpg",
-        "./img/products/product-5_2.jpg"
+        "/img/products/product-5.jpg",
+        "/img/products/product-5_2.jpg"
       ],
       "price": "2000 - 5500",
       "wishList": false,
-      "categorieId": 2
+      "categorieId": 2,
+      "brandId": 4
     },
     {
       "id": 6,
       "name": "Champion Rally Pro",
       "images": [
-        "./img/products/product-6.jpg",
-        "./img/products/product-6_2.jpg"
+        "/img/products/product-6.jpg",
+        "/img/products/product-6_2.jpg"
       ],
       "price": "2000 - 5500",
       "wishList": true,
-      "categorieId": 2
+      "categorieId": 2,
+      "brandId": 3
     },
     {
       "id": 7,
       "name": "Columbia Bahama Vent Relaxed Pfg",
       "images": [
-        "./img/products/product-7.jpg",
-        "./img/products/product-7_2.jpg"
+        "/img/products/product-7.jpg",
+        "/img/products/product-7_2.jpg"
       ],
       "price": "5000 - 6000",
       "wishList": false,
-      "categorieId": 2
+      "categorieId": 2,
+      "brandId": 2
     },
     {
       "id": 8,
       "name": "Columbia Bahama Vent Relaxed Pfg",
       "images": [
-        "./img/products/product-7.jpg",
-        "./img/products/product-7_2.jpg"
+        "/img/products/product-7.jpg",
+        "/img/products/product-7_2.jpg"
       ],
       "price": "5000 - 6000",
       "wishList": false,
-      "categorieId": 2
+      "categorieId": 2,
+      "brandId": 1
     },
     {
       "id": 9,
       "name": "Columbia Bahama Vent Relaxed Pfg",
       "images": [
-        "./img/products/product-7.jpg",
-        "./img/products/product-7_2.jpg"
+        "/img/products/product-7.jpg",
+        "/img/products/product-7_2.jpg"
       ],
       "price": "5000 - 6000",
       "wishList": true,
-      "categorieId": 2
+      "categorieId": 2,
+      "brandId": 2
     }
   ],
   "slides": [
     {
       "id": 1,
-      "path": "./img/slide-1.jpg"
+      "path": "./img/slide-1.jpg",
+      "link": "/catalog"
     },
     {
       "id": 2,
-      "path": "./img/slide-2.jpg"
+      "path": "./img/slide-2.jpg",
+      "link": "/catalog"
     },
     {
       "id": 3,
-      "path": "./img/slide-3.jpg"
+      "path": "./img/slide-3.jpg",
+      "link": "/catalog"
     }
   ],
   "categories": [
     {
       "id": 1,
       "name": "Кроссовки",
-      "link": "/sneakers"
+      "link": "/catalog/sneakers"
     },
     {
       "id": 2,
       "name": "Ботинки",
-      "link": "/boots"
+      "link": "/catalog/boots"
     },
     {
       "id": 3,
       "name": "Бутсы",
-      "link": "/cleats"
+      "link": "/catalog/cleats"
     },
     {
       "id": 4,
       "name": "Туризм",
-      "link": "/tourism"
+      "link": "/catalog/tourism"
     },
     {
       "id": 5,
       "name": "Бег",
-      "link": "/running"
+      "link": "/catalog/running"
     },
     {
       "id": 6,
       "name": "Тренировки",
-      "link": "/training"
+      "link": "/catalog/training"
     },
     {
       "id": 7,
       "name": "Новики",
-      "link": "/new-product"
+      "link": "/catalog/new-product"
     },
     {
       "id": 8,
       "name": "Кеды",
-      "link": "/keds"
+      "link": "/catalog/keds"
     }
   ],
   "brands": [
     {
       "id": 1,
       "name": "Adidas",
-      "path": "./img/brands/brands-1.jpg"
+      "path": "./img/brands/brands-1.jpg",
+      "link": "/catalog/adidas"
     },
     {
       "id": 2,
-      "name": "Adidas",
-      "path": "./img/brands/brands-2.jpg"
+      "name": "Converse",
+      "path": "./img/brands/brands-2.jpg",
+      "link": "/catalog/converse"
     },
     {
       "id": 3,
-      "name": "Adidas",
-      "path": "./img/brands/brands-3.jpg"
+      "name": "Lacoste",
+      "path": "./img/brands/brands-3.jpg",
+      "link": "/catalog/lacoste"
     },
     {
       "id": 4,
-      "name": "Adidas",
-      "path": "./img/brands/brands-4.jpg"
+      "name": "New Balance",
+      "path": "./img/brands/brands-4.jpg",
+      "link": "/catalog/new-balance"
     },
     {
       "id": 5,
       "name": "Adidas",
-      "path": "./img/brands/brands-5.jpg"
+      "path": "./img/brands/brands-5.jpg",
+      "link": "/catalog/new-balance"
     },
     {
       "id": 6,
       "name": "Adidas",
-      "path": "./img/brands/brands-6.jpg"
+      "path": "./img/brands/brands-6.jpg",
+      "link": "/catalog/new-balance"
     }
   ]
 }

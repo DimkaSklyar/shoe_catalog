@@ -6,7 +6,9 @@
           <router-link to="/"><img :src="LOGO" alt="logo" /></router-link>
         </div>
         <ListNavigation class="flex-grow" />
-        <div class="flex-none">Сравнение</div>
+        <div class="flex-none">
+          <router-link to="/comparison">Сравнение</router-link>
+        </div>
       </div>
     </div>
     <router-view />

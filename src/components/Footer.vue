@@ -12,32 +12,22 @@
       <div>
         <h3 class="text-blue-600 mb-7">Категории</h3>
         <div class="flex">
-          <ul class="mr-10">
-            <li class="text-sm hover:text-blue-600">
-              <router-link to="/">Кроссовки</router-link>
-            </li>
-            <li class="text-sm hover:text-blue-600">
-              <router-link to="/">Ботинки</router-link>
-            </li>
-            <li class="text-sm hover:text-blue-600">
-              <router-link to="/">Бутсы</router-link>
-            </li>
-            <li class="text-sm hover:text-blue-600">
-              <router-link to="/">Туризм</router-link>
+          <ul class="mr-10" v-if="categories">
+            <li
+              class="text-sm hover:text-blue-600"
+              v-for="(category, index) in categories.slice(0, 4)"
+              :key="index"
+            >
+              <router-link :to="category.link">{{ category.name }}</router-link>
             </li>
           </ul>
           <ul>
-            <li class="text-sm hover:text-blue-600">
-              <router-link to="/">Бег</router-link>
-            </li>
-            <li class="text-sm hover:text-blue-600">
-              <router-link to="/">Тренировки</router-link>
-            </li>
-            <li class="text-sm hover:text-blue-600">
-              <router-link to="/">Новики</router-link>
-            </li>
-            <li class="text-sm hover:text-blue-600">
-              <router-link to="/">Кеды</router-link>
+            <li
+              class="text-sm hover:text-blue-600"
+              v-for="(category, index) in categories.slice(4)"
+              :key="index"
+            >
+              <router-link :to="category.link">{{ category.name }}</router-link>
             </li>
           </ul>
         </div>
@@ -45,14 +35,12 @@
       <div>
         <h3 class="text-blue-600 mb-7">Информация о магазине</h3>
         <ul>
-          <li class="text-sm hover:text-blue-600">
-            <router-link to="/">О нас</router-link>
-          </li>
-          <li class="text-sm hover:text-blue-600">
-            <router-link to="/">Каталог</router-link>
-          </li>
-          <li class="text-sm hover:text-blue-600">
-            <router-link to="/">Контакты</router-link>
+          <li
+            class="text-sm hover:text-blue-600"
+            v-for="(item, index) in MAIN_MANU.slice(1)"
+            :key="index"
+          >
+            <router-link :to="item.link">{{ item.name }}</router-link>
           </li>
           <li class="text-sm hover:text-blue-600">
             <router-link to="/">Политика конфиденциальности</router-link>
@@ -63,7 +51,7 @@
         <h3 class="text-blue-600 mb-7">Личное</h3>
         <ul>
           <li class="text-sm hover:text-blue-600">
-            <router-link to="/">В сравнение</router-link>
+            <router-link to="/comparison">В сравнение</router-link>
           </li>
           <li class="text-sm hover:text-blue-600">
             <router-link to="/WishList">Избранное</router-link>
@@ -74,8 +62,19 @@
   </footer>
 </template>
 <script>
+import { MAIN_MANU } from "../assets/consts/menus.js";
 export default {
   name: "Footer",
+  data() {
+    return {
+      MAIN_MANU,
+    };
+  },
+  computed: {
+    categories() {
+      return this.$store.getters.getCategory;
+    },
+  },
 };
 </script>
 <style lang="scss"></style>

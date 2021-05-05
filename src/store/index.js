@@ -9,6 +9,7 @@ export default new Vuex.Store({
     products: [],
     allProducts: [],
     pagination: [],
+    brands: [],
     comparison: {
       productOne: null,
       productTwo: null,
@@ -49,8 +50,19 @@ export default new Vuex.Store({
     SET_WISHLIST(state, paylod) {
       state.wishList = paylod;
     },
+    SET_BRANDS(state, paylod) {
+      state.brands = paylod;
+    },
   },
   actions: {
+    async getBrands({ commit }) {
+      try {
+        const { data } = await axios.get("http://localhost:3001/brands");
+        commit("SET_BRANDS", data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async getCategories({ commit }) {
       try {
         const { data } = await axios.get("http://localhost:3001/categories");
@@ -134,5 +146,6 @@ export default new Vuex.Store({
     getPagination: (state) => state.pagination,
     getComparison: (state) => state.comparison,
     getWishList: (state) => state.wishList,
+    getBrands: (state) => state.brands,
   },
 });

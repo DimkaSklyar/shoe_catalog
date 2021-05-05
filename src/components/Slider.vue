@@ -3,7 +3,9 @@
     <div class="slider shadow-2xl">
       <slither-slider :options="optionsClider" @changed="setNewSlideIndex">
         <div v-for="(slide, index) in slides" :key="index">
-          <img :src="slide.path" alt="" />
+          <router-link :to="slide.link"
+            ><img :src="slide.path" alt=""
+          /></router-link>
         </div>
         <template slot="previous">
           <IconifyIcon

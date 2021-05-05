@@ -52,7 +52,9 @@
           >
             <strong class="text-2xl uppercase">Наслаждайтесь скидкой</strong>
             <p class="text-2xl font-light mb-3">На Все Кроссовки для Бега</p>
-            <router-link to="/"><Button text="SHOP NOW" /> </router-link>
+            <router-link to="/catalog"
+              ><Button text="В каталог" />
+            </router-link>
           </div>
         </div>
         <div>
@@ -60,8 +62,8 @@
             <strong class="font-bold uppercase text-2xl mb-5 block"
               >Наши Бестселлеры</strong
             >
-            <router-link to="/" class="inline-block"
-              ><Button text="SHOP NOW" />
+            <router-link to="/catalog" class="inline-block"
+              ><Button text="В каталог" />
             </router-link>
           </div>
         </div>
@@ -77,7 +79,9 @@
             >
               Просто взгляни
             </p>
-            <router-link to="/"><Button text="SHOP NOW" /> </router-link>
+            <router-link to="/catalog"
+              ><Button text="В каталог" />
+            </router-link>
           </div>
         </div>
       </div>
@@ -106,7 +110,9 @@
             <p class="font-bold text-2xl mb-5 uppercase">
               Спорта, ходьбы или прогулок
             </p>
-            <router-link to="/"><Button text="SHOP NOW" /> </router-link>
+            <router-link to="/catalog"
+              ><Button text="В каталог" />
+            </router-link>
           </div>
         </div>
         <div>
@@ -118,7 +124,9 @@
             >
               Самые лучшие модели
             </p>
-            <router-link to="/"><Button text="SHOP NOW" /> </router-link>
+            <router-link to="/catalog"
+              ><Button text="В каталог" />
+            </router-link>
           </div>
         </div>
       </div>
@@ -131,12 +139,11 @@
           </p>
           <div class="flex items-center">
             <input type="mail" class="input" />
-            <Button text="Subscribe" :isWhite="true" />
+            <Button text="Подписаться" :isWhite="true" />
           </div>
         </form>
       </div>
     </section>
-    {{ categories }}
   </div>
 </template>
 
@@ -156,11 +163,6 @@ export default {
     return {
       newProducts: [],
     };
-  },
-  computed: {
-    categories() {
-      return this.$store.state.categories;
-    },
   },
   components: {
     Slider,

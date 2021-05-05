@@ -20,6 +20,19 @@
                 </p>
               </li>
             </ul>
+            <h2 class="font-bold uppercase tracking-widest mb-3 mt-3">
+              Бренды
+            </h2>
+            <ul>
+              <li v-for="brand in brands" :key="brand.id">
+                <p
+                  @click="setBrands(brand.id)"
+                  class="text-sm hover:text-blue-600 cursor-pointer"
+                >
+                  {{ brand.name }}
+                </p>
+              </li>
+            </ul>
           </div>
           <div class="col-span-10">
             <div class="border p-3 mb-6 flex items-center justify-between">
@@ -108,6 +121,9 @@ export default {
     pagination() {
       return this.$store.getters.getPagination;
     },
+    brands() {
+      return this.$store.getters.getBrands;
+    },
   },
   data() {
     return {
@@ -142,10 +158,29 @@ export default {
       this.params = { categorieId: idCategories, _page: 1 };
       this.$store.dispatch("getProduct", this.params);
     },
+    setBrands(idBrands) {
+      this.params = { brandId: idBrands, _page: 1 };
+      this.$store.dispatch("getProduct", this.params);
+    },
   },
-  mounted() {
-    this.$store.dispatch("getCategories");
-    this.$store.dispatch("getProduct", { _limit: 8, _page: 1 });
+  async mounted() {
+    this.$store.dispatch("getBrands");
+    await this.$store.dispatch("getCategories");
+    const { category } = this.$route.params;
+    if (category) {
+      const categorieId = this.categories.find((cat) =>
+        cat.link.includes(category)
+      ).id;
+
+      this.params = { categorieId, _page: 1 };
+      this.$store.dispatch("getProduct", {
+        ...this.params,
+        _limit: 8,
+        _page: 1,
+      });
+    } else {
+      this.$store.dispatch("getProduct", { _limit: 8, _page: 1 });
+    }
   },
   components: {
     CardProduct,
