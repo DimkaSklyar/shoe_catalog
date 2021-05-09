@@ -42,9 +42,6 @@
           >
             <router-link :to="item.link">{{ item.name }}</router-link>
           </li>
-          <li class="text-sm hover:text-blue-600">
-            <router-link to="/">Политика конфиденциальности</router-link>
-          </li>
         </ul>
       </div>
       <div>

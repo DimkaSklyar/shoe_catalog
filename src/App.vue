@@ -36,7 +36,6 @@ export default {
     };
   },
   mounted() {
-    console.log(1);
     this.$store.dispatch("getAllProduct");
   },
 };
@@ -48,5 +47,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+body {
+  min-width: 989px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.router-link-exact-active {
+  color: #2563eb;
 }
 </style>

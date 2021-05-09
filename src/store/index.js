@@ -15,8 +15,12 @@ export default new Vuex.Store({
       productTwo: null,
     },
     wishList: [],
+    isComparison: null,
   },
   mutations: {
+    TOGGLE_COMPARISON(state, payload) {
+      state.isComparison = payload;
+    },
     SET_CATEGORIES(state, payload) {
       state.catagories = payload;
     },
@@ -55,6 +59,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    toggleComparison({ commit }, payload) {
+      commit("TOGGLE_COMPARISON", payload);
+    },
     async getBrands({ commit }) {
       try {
         const { data } = await axios.get("http://localhost:3001/brands");
@@ -86,6 +93,44 @@ export default new Vuex.Store({
           dispatch("getAllProduct", params);
         }
         commit("SET_PRODUCTS", data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getProductFromCategory({ commit, dispatch }, params) {
+      try {
+        const { data, headers } = await axios.get(
+          `http://localhost:3001/categories/${params.categoryId}`,
+          {
+            params: params.query,
+          }
+        );
+        if (headers.link) {
+          commit("SET_PAGINATION", headers.link);
+        }
+        if (params.categoryId) {
+          dispatch("getAllProduct", params.query);
+        }
+        commit("SET_PRODUCTS", data.products);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getProductFromBrands({ commit, dispatch }, params) {
+      try {
+        const { data, headers } = await axios.get(
+          `http://localhost:3001/brands/${params.brandId}`,
+          {
+            params: params.query,
+          }
+        );
+        if (headers.link) {
+          commit("SET_PAGINATION", headers.link);
+        }
+        if (params.categoryId) {
+          dispatch("getAllProduct", params.query);
+        }
+        commit("SET_PRODUCTS", data.products);
       } catch (error) {
         console.log(error);
       }
@@ -147,5 +192,6 @@ export default new Vuex.Store({
     getComparison: (state) => state.comparison,
     getWishList: (state) => state.wishList,
     getBrands: (state) => state.brands,
+    isComparison: (state) => state.isComparison,
   },
 });

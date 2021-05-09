@@ -1,7 +1,6 @@
 <template>
   <button
-    ref="comparison"
-    class="bg-blue-600 p-3 text-white uppercase font-semibold hover:shadow-md transition-all relative hover:bg-blue-800"
+    class="bg-blue-600 p-3 text-white uppercase font-semibold hover:shadow-md transition-all relative hover:bg-blue-800 com"
     @click="toggleComparison"
     @mouseleave="isShowComparison = false"
   >
@@ -18,40 +17,44 @@
       v-if="isShowComparison"
     >
       <div
-        class="p-0.5 border-1 border-blue-400 shadow-2xl bg-blue-200 hover:bg-blue-100 transition-all relative"
+        class="p-0.5 border-1 border-blue-400 shadow-2xl bg-blue-200 hover:bg-blue-100 transition-all relative comparison__item"
         @click.prevent="setComparison(1, product)"
-        @mouseover="isHover = true"
-        @mouseleave="isHover = false"
+        @mouseover="isHoverOne = true"
+        @mouseleave="isHoverOne = false"
       >
         <div
-          v-if="comparisonProducts.productOne && isHover"
+          v-if="comparisonProducts.productOne && isHoverOne"
           class="bg-red-400 p-0.5 px-1 text-xs normal-case absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         >
           Заменить
         </div>
-        <img
-          :src="comparisonProducts.productOne.images[0]"
-          alt=""
-          v-if="comparisonProducts.productOne !== null"
-        />
+        <figure>
+          <img
+            :src="comparisonProducts.productOne.images[0]"
+            alt=""
+            v-if="comparisonProducts.productOne !== null"
+          />
+        </figure>
       </div>
       <div
-        class="p-0.5 border-1 border-blue-400 shadow-2xl bg-blue-200 hover:bg-blue-100 transition-all relative"
+        class="p-0.5 border-1 border-blue-400 shadow-2xl bg-blue-200 hover:bg-blue-100 transition-all relative comparison__item"
         @click.prevent="setComparison(2, product)"
-        @mouseover="isHover = true"
-        @mouseleave="isHover = false"
+        @mouseover="isHoverTwo = true"
+        @mouseleave="isHoverTwo = false"
       >
         <div
-          v-if="comparisonProducts.productTwo && isHover"
+          v-if="comparisonProducts.productTwo && isHoverTwo"
           class="bg-red-400 p-0.5 px-1 text-xs normal-case absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         >
           Заменить
         </div>
-        <img
-          :src="comparisonProducts.productTwo.images[0]"
-          alt=""
-          v-if="comparisonProducts.productTwo !== null"
-        />
+        <figure>
+          <img
+            :src="comparisonProducts.productTwo.images[0]"
+            alt=""
+            v-if="comparisonProducts.productTwo !== null"
+          />
+        </figure>
       </div>
     </div>
   </button>
@@ -68,7 +71,8 @@ export default {
   data() {
     return {
       isShowComparison: false,
-      isHover: false,
+      isHoverOne: false,
+      isHoverTwo: false,
       icons: {
         bxGitCompare,
       },
@@ -95,7 +99,28 @@ export default {
 </script>
 <style lang="scss">
 .comparison {
-  width: 150px;
-  height: 70px;
+  width: 180px;
+  height: 83px;
+  top: 0;
+  left: 20px;
+  padding: 20px;
+  box-sizing: content-box;
+  &__item {
+    width: 83px;
+    overflow: hidden;
+    figure {
+      width: 80px;
+      height: 80px;
+      overflow: hidden;
+      padding: 3px;
+      object-fit: contain;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+.com {
 }
 </style>

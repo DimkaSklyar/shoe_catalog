@@ -11,6 +11,14 @@
           <div class="col-span-2">
             <h2 class="font-bold uppercase tracking-widest mb-3">Категории</h2>
             <ul>
+              <li>
+                <router-link
+                  to="/catalog"
+                  class="text-sm hover:text-blue-600 cursor-pointer"
+                >
+                  Все
+                </router-link>
+              </li>
               <li v-for="category in categories" :key="category.id">
                 <router-link
                   :to="category.link"
@@ -25,12 +33,12 @@
             </h2>
             <ul>
               <li v-for="brand in brands" :key="brand.id">
-                <p
-                  @click="setBrands(brand.id)"
+                <router-link
+                  :to="brand.link"
                   class="text-sm hover:text-blue-600 cursor-pointer"
                 >
                   {{ brand.name }}
-                </p>
+                </router-link>
               </li>
             </ul>
           </div>
@@ -139,24 +147,38 @@ export default {
     };
   },
   watch: {
-    // при изменениях маршрута запрашиваем данные снова
     // eslint-disable-next-line prettier/prettier
     $route: "fetchData",
   },
+
   methods: {
     async fetchData() {
       await this.$store.dispatch("getCategories");
-      const { category } = this.$route.params;
+      const { category, brands } = this.$route.params;
+
       if (category) {
-        const categorieId = this.categories.find((cat) =>
+        const categoryId = this.categories.find((cat) =>
           cat.link.includes(category)
         ).id;
-
-        this.params = { categorieId, _page: 1, _limit: 8 };
-        this.$store.dispatch("getProduct", {
-          ...this.params,
-          _limit: 8,
-          _page: 1,
+        this.params = { _page: 1, _limit: 8, _embed: "products" };
+        this.$store.dispatch("getProductFromCategory", {
+          categoryId,
+          query: {
+            ...this.params,
+            _limit: 8,
+            _page: 1,
+          },
+        });
+      } else if (brands) {
+        const brandId = this.brands.find((cat) => cat.link.includes(brands)).id;
+        this.params = { _page: 1, _limit: 8, _embed: "products" };
+        this.$store.dispatch("getProductFromBrands", {
+          brandId,
+          query: {
+            ...this.params,
+            _limit: 8,
+            _page: 1,
+          },
         });
       } else {
         this.$store.dispatch("getProduct", { _limit: 8, _page: 1 });
@@ -177,29 +199,35 @@ export default {
       this.params._page = page;
       this.$store.dispatch("getProduct", this.params);
     },
-    setCategories(idCategories) {
-      this.params = { categorieId: idCategories, _page: 1, _limit: 8 };
-      this.$store.dispatch("getProduct", this.params);
-    },
-    setBrands(idBrands) {
-      this.params = { brandId: idBrands, _page: 1, _limit: 8 };
-      this.$store.dispatch("getProduct", this.params);
-    },
   },
   async mounted() {
-    this.$store.dispatch("getBrands");
+    await this.$store.dispatch("getBrands");
     await this.$store.dispatch("getCategories");
-    const { category } = this.$route.params;
+    const { category, brands } = this.$route.params;
+
     if (category) {
-      const categorieId = this.categories.find((cat) =>
+      const categoryId = this.categories.find((cat) =>
         cat.link.includes(category)
       ).id;
-
-      this.params = { categorieId, _page: 1, _limit: 8 };
-      this.$store.dispatch("getProduct", {
-        ...this.params,
-        _limit: 8,
-        _page: 1,
+      this.params = { _page: 1, _limit: 8, _embed: "products" };
+      this.$store.dispatch("getProductFromCategory", {
+        categoryId,
+        query: {
+          ...this.params,
+          _limit: 8,
+          _page: 1,
+        },
+      });
+    } else if (brands) {
+      const brandId = this.brands.find((cat) => cat.link.includes(brands)).id;
+      this.params = { _page: 1, _limit: 8, _embed: "products" };
+      this.$store.dispatch("getProductFromBrands", {
+        brandId,
+        query: {
+          ...this.params,
+          _limit: 8,
+          _page: 1,
+        },
       });
     } else {
       this.$store.dispatch("getProduct", { _limit: 8, _page: 1 });

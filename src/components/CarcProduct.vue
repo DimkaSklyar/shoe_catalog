@@ -3,18 +3,23 @@
     class="card p-4 hover:shadow-2xl transition-all duration-500 shadow-lg rounded"
   >
     <div class="card__inner">
-      <div class="cursor-pointer">
+      <div class="cursor-pointer flex items-center justify-center">
         <div
           @click="showModal"
-          class="cart__img p-5 relative"
+          class="card__img p-2 relative flex items-center justify-center"
           @mouseover="isHover = true"
           @mouseleave="isHover = false"
         >
-          <img :src="product.images[0]" alt="" />
+          <img
+            :src="product.images[0]"
+            alt=""
+            class="w-full"
+            :class="!isHover ? 'opacity-1' : 'opacity-0'"
+          />
           <img
             :src="product.images[1]"
             alt=""
-            class="absolute top-0 left-0 transition-all duration-700"
+            class="absolute top-50 left-50 transition-all duration-700 w-full"
             :class="isHover ? 'opacity-1' : 'opacity-0'"
           />
         </div>
@@ -94,6 +99,15 @@ export default {
 </script>
 <style scoped lang="scss">
 .card {
+  &__img {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
   &__option {
     transition: 0.3s;
     &:hover {

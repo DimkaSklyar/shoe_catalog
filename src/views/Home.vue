@@ -32,7 +32,11 @@
         Новики
       </div>
       <div class="grid grid-cols-4 gap-3">
-        <CarcProduct v-for="item in products" :key="item.id" :product="item" />
+        <CarcProduct
+          v-for="item in newProducts.slice(0, 4)"
+          :key="item.id"
+          :product="item"
+        />
       </div>
     </section>
     <section class="pb-20">
@@ -125,13 +129,19 @@
     </section>
     <section class="py-20">
       <div class="bg-blue-600 py-8 px-10">
-        <form class="grid grid-cols-2 items-center">
+        <form class="grid grid-cols-2 items-center" @submit.prevent="Subscribe">
           <p class="text-white">
             Подпишитесь на рассылку,чтобы получать предложения и многое другое
           </p>
-          <div class="flex items-center">
-            <input type="mail" class="input" />
-            <Button text="Подписаться" :isWhite="true" />
+          <div class="flex items-center relative">
+            <input type="email" class="input" name="email" />
+            <Button text="Подписаться" :isWhite="true" type="submit" />
+            <p class="text-green-300 absolute notification" v-if="isSubmit">
+              Сообщение успешно отправленно
+            </p>
+            <p class="text-red-300 notification" v-if="error">
+              Ошибка отправки сообщения
+            </p>
           </div>
         </form>
       </div>
@@ -146,6 +156,8 @@ import Timer from "../components/Timer.vue";
 import CarcProduct from "../components/CarcProduct.vue";
 import ListBrands from "../components/listBrands.vue";
 import Button from "../components/button/Button.vue";
+import emailjs from "emailjs-com";
+import axios from "axios";
 
 export default {
   name: "Home",
@@ -156,6 +168,13 @@ export default {
     CarcProduct,
     ListBrands,
     Button,
+  },
+  data() {
+    return {
+      newProducts: [],
+      isSubmit: false,
+      error: false,
+    };
   },
   computed: {
     products() {
@@ -169,6 +188,33 @@ export default {
       _limit: 4,
       _page: 1,
     });
+    const { data } = await axios.get(
+      "http://localhost:3001/products?new=true&limit=4"
+    );
+    this.newProducts = data;
+  },
+  methods: {
+    Subscribe(e) {
+      const self = this;
+      emailjs
+        .sendForm(
+          "service_09y0d27",
+          "template_xatuhhj",
+          e.target,
+          "user_L9DWJeTPuHpzPxrX7MVr8"
+        )
+        .then(
+          (result) => {
+            self.isSubmit = true;
+            console.log("SUCCESS!", result.status, result.text);
+            e.target.reset();
+          },
+          (error) => {
+            self.error = true;
+            console.log("FAILED...", error);
+          }
+        );
+    },
   },
 };
 </script>
@@ -199,5 +245,8 @@ export default {
 .input {
   padding: 12px;
   width: 100%;
+}
+.notification {
+  bottom: -25px;
 }
 </style>

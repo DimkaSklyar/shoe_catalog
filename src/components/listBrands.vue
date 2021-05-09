@@ -26,6 +26,11 @@ export default {
 </script>
 <style lang="scss">
 .brand {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: 0.3s;
   &:hover {
     opacity: 0.6;

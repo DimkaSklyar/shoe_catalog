@@ -17,6 +17,39 @@
         <p class="uppercase font-bold text-lg text-blue-600">
           Цена: {{ product.price }}
         </p>
+        <p>
+          <span class="font-bold">Наименование:</span>
+          {{ product.name }}
+        </p>
+        <p>
+          <span class="font-bold">Цена:</span>
+          {{ product.price }}
+        </p>
+        <p>
+          <span class="font-bold">Назначение:</span>
+          {{ product.appointment }}
+        </p>
+        <p>
+          <span class="font-bold">Страна:</span>
+          {{ product.county }}
+        </p>
+        <p>
+          <span class="font-bold">Комплектация:</span>
+          {{ product.equipment }}
+        </p>
+        <p>
+          <span class="font-bold">Состав:</span>
+          {{ product.structure }}
+        </p>
+        <p>
+          <span class="font-bold">Описание:</span>
+          {{ product.description }}
+        </p>
+        <p class="mb-3">
+          <span class="font-bold">Новинка:</span>
+          {{ product.new ? "Да" : "Нет" }}
+        </p>
+        <Comparison :product="product" :id="product.id" text="К сравнению" />
       </div>
     </div>
   </div>
@@ -24,12 +57,14 @@
 <script>
 import IconifyIcon from "@iconify/vue";
 import closeIcon from "@iconify/icons-carbon/close";
+import Comparison from "../components/Comparison";
 
 export default {
   name: "Modal",
   props: ["product"],
   components: {
     IconifyIcon,
+    Comparison,
   },
   data() {
     return {

@@ -54,65 +54,99 @@
         </ul>
       </div>
       <div class="flex flex-col justify-between">
-        <form id="feedback">
+        <form @submit.prevent="sendEmail" ref="form">
           <h2 class="uppercase mb-6 text-lg font-bold">Свяжитесь с нами</h2>
-          <input type="text" class="border p-2 w-full mb-2" placeholder="Имя" />
           <input
+            type="text"
+            class="border p-2 w-full mb-2"
+            placeholder="Имя"
+            name="name"
+          />
+          <input
+            name="email"
             type="text"
             class="border p-2 w-full mb-2"
             placeholder="Email"
           />
           <textarea
-            name=""
+            name="message"
             placeholder="Сообщение"
             class="border p-2 w-full mb-2"
             rows="7"
           ></textarea>
+          <Button text="Отправить" type="submit" class="w-full" />
+          <p class="text-green-300" v-if="isSubmit">
+            Сообщение успешно отправленно
+          </p>
+          <p class="text-red-300" v-if="error">Ошибка отправки сообщения</p>
         </form>
-        <Button text="Submit" type="submit" form="feedback" />
       </div>
       <div>
         <h2 class="uppercase mb-6 text-lg font-bold">Мы в социальных сетях</h2>
         <ul>
           <li class="flex items-center border-b py-6">
-            <IconifyIcon
-              :icon="icons.vkFill"
-              :style="{ color: '#1d73dd', fontSize: '36px' }"
-            />
-            <div class="pl-6">
-              <h3 class="text-md uppercase font-bold leading-none">
-                В Контакте
-              </h3>
-            </div>
+            <a href="https://vk.com/" target="_blank" class="flex items-center">
+              <IconifyIcon
+                :icon="icons.vkFill"
+                :style="{ color: '#1d73dd', fontSize: '36px' }"
+              />
+              <div class="pl-6">
+                <h3 class="text-md uppercase font-bold leading-none">
+                  В Контакте
+                </h3>
+              </div>
+            </a>
           </li>
           <li class="flex items-center border-b py-6">
-            <IconifyIcon
-              :icon="icons.facebookAlt"
-              :style="{ color: '#1d73dd', fontSize: '36px' }"
-            />
-            <div class="pl-6">
-              <h3 class="text-md uppercase font-bold leading-none">Facebook</h3>
-            </div>
+            <a
+              href="https://ru-ru.facebook.com/"
+              target="_blank"
+              class="flex items-center"
+            >
+              <IconifyIcon
+                :icon="icons.facebookAlt"
+                :style="{ color: '#1d73dd', fontSize: '36px' }"
+              />
+              <div class="pl-6">
+                <h3 class="text-md uppercase font-bold leading-none">
+                  Facebook
+                </h3>
+              </div>
+            </a>
           </li>
           <li class="flex items-center border-b py-6">
-            <IconifyIcon
-              :icon="icons.twitterFill"
-              :style="{ color: '#1d73dd', fontSize: '36px' }"
-            />
-            <div class="pl-6">
-              <h3 class="text-md uppercase font-bold leading-none">Twitter</h3>
-            </div>
+            <a
+              href="https://twitter.com/"
+              target="_blank"
+              class="flex items-center"
+            >
+              <IconifyIcon
+                :icon="icons.twitterFill"
+                :style="{ color: '#1d73dd', fontSize: '36px' }"
+              />
+              <div class="pl-6">
+                <h3 class="text-md uppercase font-bold leading-none">
+                  Twitter
+                </h3>
+              </div>
+            </a>
           </li>
           <li class="flex items-center border-b py-6">
-            <IconifyIcon
-              :icon="icons.instagramIcon"
-              :style="{ color: '#1d73dd', fontSize: '36px' }"
-            />
-            <div class="pl-6">
-              <h3 class="text-md uppercase font-bold leading-none">
-                Instagram
-              </h3>
-            </div>
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              class="flex items-center"
+            >
+              <IconifyIcon
+                :icon="icons.instagramIcon"
+                :style="{ color: '#1d73dd', fontSize: '36px' }"
+              />
+              <div class="pl-6">
+                <h3 class="text-md uppercase font-bold leading-none">
+                  Instagram
+                </h3>
+              </div>
+            </a>
           </li>
         </ul>
       </div>
@@ -129,8 +163,9 @@ import facebookAlt from "@iconify/icons-dashicons/facebook-alt";
 import vkFill from "@iconify/icons-akar-icons/vk-fill";
 import twitterFill from "@iconify/icons-akar-icons/twitter-fill";
 import instagramIcon from "@iconify/icons-bi/instagram";
-
 import Button from "../components/button/Button";
+import emailjs from "emailjs-com";
+
 export default {
   components: {
     IconifyIcon,
@@ -148,7 +183,32 @@ export default {
         twitterFill,
         instagramIcon,
       },
+      isSubmit: false,
+      error: false,
     };
+  },
+  methods: {
+    sendEmail(e) {
+      const self = this;
+      emailjs
+        .sendForm(
+          "service_09y0d27",
+          "template_gmk3a16",
+          e.target,
+          "user_L9DWJeTPuHpzPxrX7MVr8"
+        )
+        .then(
+          (result) => {
+            self.isSubmit = true;
+            console.log("SUCCESS!", result.status, result.text);
+            e.target.reset();
+          },
+          (error) => {
+            self.error = true;
+            console.log("FAILED...", error);
+          }
+        );
+    },
   },
 };
 </script>
