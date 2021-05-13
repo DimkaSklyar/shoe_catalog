@@ -49,7 +49,7 @@
         <Comparison :product="product" :id="product.id" />
       </div>
       <div class="price text-sm text-blue-600 font-semibold">
-        {{ product.price }}р.
+        Цена: от {{ product.price }}р.
       </div>
     </div>
     <Modal :product="product" v-if="isShowModal" @showModal="showModal" />

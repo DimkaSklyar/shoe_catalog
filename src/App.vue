@@ -6,7 +6,7 @@
           <router-link to="/"><img :src="LOGO" alt="logo" /></router-link>
         </div>
         <ListNavigation class="flex-grow" />
-        <div class="flex-none">
+        <div class="flex-none text-base font-bold">
           <router-link to="/comparison">Сравнение</router-link>
         </div>
       </div>
@@ -34,9 +34,6 @@ export default {
     return {
       LOGO,
     };
-  },
-  mounted() {
-    this.$store.dispatch("getAllProduct");
   },
 };
 </script>

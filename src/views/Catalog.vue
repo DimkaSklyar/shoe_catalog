@@ -137,6 +137,7 @@ export default {
     return {
       sortSelected: "",
       showSelected: 8,
+      countProduct: 0,
       params: {
         _limit: 8,
         _sort: "",
@@ -169,6 +170,9 @@ export default {
             _page: 1,
           },
         });
+        this.$store.dispatch("getAllProduct", {
+          categoryId,
+        });
       } else if (brands) {
         const brandId = this.brands.find((cat) => cat.link.includes(brands)).id;
         this.params = { _page: 1, _limit: 8, _embed: "products" };
@@ -180,8 +184,12 @@ export default {
             _page: 1,
           },
         });
+        this.$store.dispatch("getAllProduct", {
+          brandId,
+        });
       } else {
         this.$store.dispatch("getProduct", { _limit: 8, _page: 1 });
+        this.$store.dispatch("getAllProduct");
       }
     },
     sorting() {
@@ -218,6 +226,9 @@ export default {
           _page: 1,
         },
       });
+      this.$store.dispatch("getAllProduct", {
+        categoryId,
+      });
     } else if (brands) {
       const brandId = this.brands.find((cat) => cat.link.includes(brands)).id;
       this.params = { _page: 1, _limit: 8, _embed: "products" };
@@ -229,8 +240,12 @@ export default {
           _page: 1,
         },
       });
+      this.$store.dispatch("getAllProduct", {
+        brandId,
+      });
     } else {
       this.$store.dispatch("getProduct", { _limit: 8, _page: 1 });
+      this.$store.dispatch("getAllProduct");
     }
   },
   components: {

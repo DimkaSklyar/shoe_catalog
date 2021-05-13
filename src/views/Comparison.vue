@@ -11,48 +11,69 @@
         >
           <div
             v-if="comparisonProducts.productOne"
-            class="shadow-md p-4 rounded relative pb-16"
+            class="shadow-md p-4 rounded relative flex flex-col justify-between"
           >
-            <img
-              :src="comparisonProducts.productOne.images[0]"
-              alt=""
-              class="w-full p-20 img"
-            />
-            <p>
-              <span class="font-bold">Наименование:</span>
-              {{ comparisonProducts.productOne.name }}
-            </p>
-            <p>
-              <span class="font-bold">Цена:</span>
-              {{ comparisonProducts.productOne.price }}
-            </p>
-            <p>
-              <span class="font-bold">Назначение:</span>
-              {{ comparisonProducts.productOne.appointment }}
-            </p>
-            <p>
-              <span class="font-bold">Страна:</span>
-              {{ comparisonProducts.productOne.county }}
-            </p>
-            <p>
-              <span class="font-bold">Комплектация:</span>
-              {{ comparisonProducts.productOne.equipment }}
-            </p>
-            <p>
-              <span class="font-bold">Состав:</span>
-              {{ comparisonProducts.productOne.structure }}
-            </p>
-            <p>
-              <span class="font-bold">Описание:</span>
-              {{ comparisonProducts.productOne.description }}
-            </p>
-            <p>
-              <span class="font-bold">Новинка:</span>
-              {{ comparisonProducts.productOne.new ? "Да" : "Нет" }}
-            </p>
-            <p @click="handleRemove(1)" class="absolute bottom-3 right-3">
-              <Button text="Удалить" class="ml-auto block">Удалить</Button>
-            </p>
+            <div class="">
+              <img
+                :src="comparisonProducts.productOne.images[0]"
+                alt=""
+                class="img"
+              />
+              <p class="paragrah">
+                <span class="font-bold">Наименование:</span>
+                {{ comparisonProducts.productOne.name | maxSring }}
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Цена:</span>
+                от {{ comparisonProducts.productOne.price }} руб.
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Назначение:</span>
+                {{ comparisonProducts.productOne.appointment }}
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Страна:</span>
+                {{ comparisonProducts.productOne.county }}
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Комплектация:</span>
+                {{ comparisonProducts.productOne.equipment }}
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Состав:</span>
+                {{ comparisonProducts.productOne.structure }}
+              </p>
+              <p
+                class="paragrah"
+                v-if="comparisonProducts.productOne.description !== ''"
+              >
+                <span class="font-bold">Описание:</span>
+                {{ comparisonProducts.productOne.description }}
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Новинка:</span>
+                {{ comparisonProducts.productOne.new ? "Да" : "Нет" }}
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Доступные размеры:</span>
+                <span
+                  v-for="(size, index) in comparisonProducts.productOne.size"
+                  :key="index"
+                  class="px-1 border inline-block mx-1"
+                  >{{ size }}</span
+                >
+              </p>
+            </div>
+            <div class="flex justify-between items-center mt-9">
+              <p @click="handleRemove(1)">
+                <Button text="Удалить" class="ml-auto block">Удалить</Button>
+              </p>
+              <router-link
+                to="/contacts"
+                class="py-3 px-5 uppercase font-bold shadow-md focus:outline-none hover:bg-black transition-all ease-in-out hover:text-white"
+                >Уточнить наличие</router-link
+              >
+            </div>
           </div>
           <div
             v-else
@@ -65,48 +86,69 @@
           </div>
           <div
             v-if="comparisonProducts.productTwo"
-            class="shadow-md p-4 rounded relative pb-16"
+            class="shadow-md p-4 rounded relative flex flex-col justify-between"
           >
-            <img
-              :src="comparisonProducts.productTwo.images[0]"
-              alt=""
-              class="w-full p-20 img"
-            />
-            <p>
-              <span class="font-bold">Наименование:</span>
-              {{ comparisonProducts.productTwo.name }}
-            </p>
-            <p>
-              <span class="font-bold">Цена:</span>
-              {{ comparisonProducts.productTwo.price }}
-            </p>
-            <p>
-              <span class="font-bold">Назначение:</span>
-              {{ comparisonProducts.productTwo.appointment }}
-            </p>
-            <p>
-              <span class="font-bold">Страна:</span>
-              {{ comparisonProducts.productTwo.county }}
-            </p>
-            <p>
-              <span class="font-bold">Комплектация:</span>
-              {{ comparisonProducts.productTwo.equipment }}
-            </p>
-            <p>
-              <span class="font-bold">Состав:</span>
-              {{ comparisonProducts.productTwo.structure }}
-            </p>
-            <p>
-              <span class="font-bold">Описание:</span>
-              {{ comparisonProducts.productTwo.description }}
-            </p>
-            <p>
-              <span class="font-bold">Новинка:</span>
-              {{ comparisonProducts.productTwo.new ? "Да" : "Нет" }}
-            </p>
-            <p @click="handleRemove(2)" class="absolute bottom-3 right-3">
-              <Button text="Удалить" class="ml-auto block">Удалить</Button>
-            </p>
+            <div>
+              <img
+                :src="comparisonProducts.productTwo.images[0]"
+                alt=""
+                class="img"
+              />
+              <p class="paragrah">
+                <span class="font-bold">Наименование:</span>
+                {{ comparisonProducts.productTwo.name | maxSring }}
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Цена:</span>
+                от {{ comparisonProducts.productTwo.price }} руб.
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Назначение:</span>
+                {{ comparisonProducts.productTwo.appointment }}
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Страна:</span>
+                {{ comparisonProducts.productTwo.county }}
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Комплектация:</span>
+                {{ comparisonProducts.productTwo.equipment }}
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Состав:</span>
+                {{ comparisonProducts.productTwo.structure }}
+              </p>
+              <p
+                class="paragrah"
+                v-if="comparisonProducts.productOne.description !== ''"
+              >
+                <span class="font-bold">Описание:</span>
+                {{ comparisonProducts.productTwo.description }}
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Новинка:</span>
+                {{ comparisonProducts.productTwo.new ? "Да" : "Нет" }}
+              </p>
+              <p class="paragrah">
+                <span class="font-bold">Доступные размеры:</span>
+                <span
+                  v-for="(size, index) in comparisonProducts.productTwo.size"
+                  :key="index"
+                  class="px-1 border inline-block mx-1"
+                  >{{ size }}</span
+                >
+              </p>
+            </div>
+            <div class="flex justify-between items-center mt-9">
+              <p @click="handleRemove(2)">
+                <Button text="Удалить" class="ml-auto block">Удалить</Button>
+              </p>
+              <router-link
+                to="/contacts"
+                class="py-3 px-5 uppercase font-bold shadow-md focus:outline-none hover:bg-black transition-all ease-in-out hover:text-white"
+                >Уточнить наличие</router-link
+              >
+            </div>
           </div>
           <div
             v-else
@@ -142,6 +184,14 @@ export default {
   components: {
     Button,
   },
+  filters: {
+    maxSring: function (value) {
+      if (value.length > 20) {
+        return value.slice(0, 20) + "...";
+      }
+      return value;
+    },
+  },
   methods: {
     handleRemove(id) {
       this.$store.dispatch("setComparison", { id, product: null });
@@ -152,5 +202,13 @@ export default {
 <style lang="scss">
 .custom-container {
   width: 900px;
+}
+.img {
+  height: 200px;
+  margin: 0 auto 30px;
+  margin-bottom: 30px;
+}
+.paragrah {
+  margin-bottom: 7px;
 }
 </style>

@@ -1,7 +1,11 @@
 <template>
   <nav>
     <ul class="flex justify-center">
-      <li v-for="item in MAIN_MANU" :key="item.id" class="px-3 text-sm">
+      <li
+        v-for="item in MAIN_MANU"
+        :key="item.id"
+        class="px-3 text-base font-bold"
+      >
         <router-link :to="item.link" class="inline-block">{{
           item.name
         }}</router-link>

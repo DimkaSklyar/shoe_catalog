@@ -10,6 +10,7 @@ export default new Vuex.Store({
     allProducts: [],
     pagination: [],
     brands: [],
+    newProducts: [],
     comparison: {
       productOne: null,
       productTwo: null,
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     SET_PRODUCTS(state, payload) {
       state.products = payload;
+    },
+    SET_NEW_PRODUCTS(state, payload) {
+      state.newProducts = payload;
     },
     SET_ALL_PRODUCTS(state, payload) {
       state.allProducts = payload;
@@ -78,7 +82,7 @@ export default new Vuex.Store({
         console.log(error);
       }
     },
-    async getProduct({ commit, dispatch }, params) {
+    async getProduct({ commit }, params) {
       try {
         const { data, headers } = await axios.get(
           "http://localhost:3001/products",
@@ -89,15 +93,22 @@ export default new Vuex.Store({
         if (headers.link) {
           commit("SET_PAGINATION", headers.link);
         }
-        if (params.categorieId) {
-          dispatch("getAllProduct", params);
-        }
         commit("SET_PRODUCTS", data);
       } catch (error) {
         console.log(error);
       }
     },
-    async getProductFromCategory({ commit, dispatch }, params) {
+    async getNewProduct({ commit }) {
+      try {
+        const { data } = await axios.get(
+          "http://localhost:3001/products?new=true&limit=4"
+        );
+        commit("SET_NEW_PRODUCTS", data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getProductFromCategory({ commit }, params) {
       try {
         const { data, headers } = await axios.get(
           `http://localhost:3001/categories/${params.categoryId}`,
@@ -108,15 +119,12 @@ export default new Vuex.Store({
         if (headers.link) {
           commit("SET_PAGINATION", headers.link);
         }
-        if (params.categoryId) {
-          dispatch("getAllProduct", params.query);
-        }
         commit("SET_PRODUCTS", data.products);
       } catch (error) {
         console.log(error);
       }
     },
-    async getProductFromBrands({ commit, dispatch }, params) {
+    async getProductFromBrands({ commit }, params) {
       try {
         const { data, headers } = await axios.get(
           `http://localhost:3001/brands/${params.brandId}`,
@@ -126,9 +134,6 @@ export default new Vuex.Store({
         );
         if (headers.link) {
           commit("SET_PAGINATION", headers.link);
-        }
-        if (params.categoryId) {
-          dispatch("getAllProduct", params.query);
         }
         commit("SET_PRODUCTS", data.products);
       } catch (error) {
@@ -193,5 +198,6 @@ export default new Vuex.Store({
     getWishList: (state) => state.wishList,
     getBrands: (state) => state.brands,
     isComparison: (state) => state.isComparison,
+    getNewProduct: (state) => state.newProducts,
   },
 });

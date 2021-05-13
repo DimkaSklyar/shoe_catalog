@@ -33,7 +33,7 @@
       </div>
       <div class="grid grid-cols-4 gap-3">
         <CarcProduct
-          v-for="item in newProducts.slice(0, 4)"
+          v-for="item in newProducts"
           :key="item.id"
           :product="item"
         />
@@ -157,7 +157,6 @@ import CarcProduct from "../components/CarcProduct.vue";
 import ListBrands from "../components/listBrands.vue";
 import Button from "../components/button/Button.vue";
 import emailjs from "emailjs-com";
-import axios from "axios";
 
 export default {
   name: "Home",
@@ -171,7 +170,6 @@ export default {
   },
   data() {
     return {
-      newProducts: [],
       isSubmit: false,
       error: false,
     };
@@ -179,6 +177,9 @@ export default {
   computed: {
     products() {
       return this.$store.getters.getProducts;
+    },
+    newProducts() {
+      return this.$store.getters.newProducts;
     },
   },
   async mounted() {
@@ -188,10 +189,7 @@ export default {
       _limit: 4,
       _page: 1,
     });
-    const { data } = await axios.get(
-      "http://localhost:3001/products?new=true&limit=4"
-    );
-    this.newProducts = data;
+    this.$store.dispatch("getNewProduct");
   },
   methods: {
     Subscribe(e) {

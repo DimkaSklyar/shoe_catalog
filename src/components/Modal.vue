@@ -9,21 +9,19 @@
         :style="{ fontSize: '50px' }"
         class="absolute right-2 top-2 cursor-pointer"
       />
-      <div>
-        <img :src="product.images[0]" alt="" class="w-full" />
+      <div class="wrap_img">
+        <img :src="product.images[0]" alt="" class="modal_img" />
       </div>
       <div>
         <h2 class="uppercase font-bold text-lg">{{ product.name }}</h2>
-        <p class="uppercase font-bold text-lg text-blue-600">
-          Цена: {{ product.price }}
-        </p>
         <p>
           <span class="font-bold">Наименование:</span>
           {{ product.name }}
         </p>
         <p>
-          <span class="font-bold">Цена:</span>
-          {{ product.price }}
+          <span class="font-bold text-blue-600"
+            >Цена: от {{ product.price }}руб.</span
+          >
         </p>
         <p>
           <span class="font-bold">Назначение:</span>
@@ -45,11 +43,27 @@
           <span class="font-bold">Описание:</span>
           {{ product.description }}
         </p>
-        <p class="mb-3">
+        <p>
           <span class="font-bold">Новинка:</span>
           {{ product.new ? "Да" : "Нет" }}
         </p>
-        <Comparison :product="product" :id="product.id" text="К сравнению" />
+        <p class="mb-3">
+          <span class="font-bold">Доступные размеры:</span>
+          <span
+            v-for="(size, index) in product.size"
+            :key="index"
+            class="px-1 border inline-block mx-1"
+            >{{ size }}</span
+          >
+        </p>
+        <div class="flex justify-between">
+          <Comparison :product="product" :id="product.id" text="К сравнению" />
+          <router-link
+            to="/contacts"
+            class="py-3.5 px-5 uppercase font-bold shadow-md focus:outline-none hover:bg-black transition-all ease-in-out hover:text-white"
+            >Уточнить наличие</router-link
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -77,7 +91,17 @@ export default {
 </script>
 <style lang="scss">
 .modal {
-  width: 50%;
-  min-height: 500px;
+  width: 850px;
+  min-height: 200px;
+  &_img {
+    max-height: 200px;
+    height: 100%;
+    margin: 0 auto;
+  }
+  .wrap_img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 </style>
