@@ -88,11 +88,12 @@ export default {
     showModal() {
       this.isShowModal = !this.isShowModal;
     },
-    addWishList(product) {
-      this.$store.dispatch("setWishList", {
+    async addWishList(product) {
+      await this.$store.dispatch("setWishList", {
         id: product.id,
         isWish: !product.wishList,
       });
+      this.$store.dispatch("getWishList");
     },
   },
 };

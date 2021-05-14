@@ -181,7 +181,6 @@ export default new Vuex.Store({
         const { data } = await axios.get(
           `http://localhost:3001/products?wishList=true`
         );
-        console.log(data);
         commit("SET_WISHLIST", data);
       } catch (error) {
         console.log(error);
