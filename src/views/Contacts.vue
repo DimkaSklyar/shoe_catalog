@@ -23,7 +23,7 @@
               :style="{ color: '#1d73dd', fontSize: '36px' }"
             />
             <div class="pl-3">
-              <h3 class="text-lg uppercase font-bold leading-none">Телефона</h3>
+              <h3 class="text-lg uppercase font-bold leading-none">Телефон</h3>
               <p class="text-xs">+7 (999) 999-99-99</p>
             </div>
           </li>

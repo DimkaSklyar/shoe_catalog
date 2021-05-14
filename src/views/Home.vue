@@ -29,7 +29,7 @@
       <div
         class="section__title text-center uppercase font-semibold text-blue-600 text-xl mb-8"
       >
-        Новики
+        Новинки
       </div>
       <div class="grid grid-cols-4 gap-3">
         <CarcProduct
@@ -179,7 +179,7 @@ export default {
       return this.$store.getters.getProducts;
     },
     newProducts() {
-      return this.$store.getters.newProducts;
+      return this.$store.getters.getNewProduct;
     },
   },
   async mounted() {

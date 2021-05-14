@@ -6,7 +6,7 @@
         <p class="text-xs pr-20">
           Битва, возможность, одержимость, самовыражение - какой бы ни была игра
           для вас, правильная обувь поможет вам выделиться на линии и произвести
-          фурор.
+          фурор
         </p>
       </div>
       <div>
@@ -48,7 +48,7 @@
         <h3 class="text-blue-600 mb-7">Личное</h3>
         <ul>
           <li class="text-sm hover:text-blue-600">
-            <router-link to="/comparison">В сравнение</router-link>
+            <router-link to="/comparison">Cравнение</router-link>
           </li>
           <li class="text-sm hover:text-blue-600">
             <router-link to="/WishList">Избранное</router-link>

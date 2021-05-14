@@ -68,6 +68,7 @@
 <style lang="scss">
 .about {
   margin-top: 50px;
+  text-align: justify;
   p {
     margin-bottom: 15px;
     line-height: 1.7;

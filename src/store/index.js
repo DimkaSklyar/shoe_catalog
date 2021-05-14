@@ -101,7 +101,7 @@ export default new Vuex.Store({
     async getNewProduct({ commit }) {
       try {
         const { data } = await axios.get(
-          "http://localhost:3001/products?new=true&limit=4"
+          "http://localhost:3001/products?new=true&_limit=4"
         );
         commit("SET_NEW_PRODUCTS", data);
       } catch (error) {

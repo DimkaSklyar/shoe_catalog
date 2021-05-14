@@ -3,7 +3,7 @@
     <div class="custom-container mx-auto my-20">
       <div>
         <h1 class="text-center text-2xl text-black uppercase font-semibold">
-          В сравнение
+          Cравнение
         </h1>
         <div
           class="grid grid-cols-2 mt-16 gap-5"
