@@ -24,7 +24,7 @@
             />
             <div class="pl-3">
               <h3 class="text-lg uppercase font-bold leading-none">Телефон</h3>
-              <p class="text-xs">+7 (999) 999-99-99</p>
+              <p class="text-xs">+7 (900) 288-78-60</p>
             </div>
           </li>
           <li class="flex items-center border-b py-6">
@@ -192,10 +192,10 @@ export default {
       const self = this;
       emailjs
         .sendForm(
-          "service_09y0d27",
-          "template_gmk3a16",
+          "service_9g7zues",
+          "template_dilyo6a",
           e.target,
-          "user_L9DWJeTPuHpzPxrX7MVr8"
+          "user_23MSBgUbni3voZxl0Q5vd"
         )
         .then(
           (result) => {

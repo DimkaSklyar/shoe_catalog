@@ -196,10 +196,10 @@ export default {
       const self = this;
       emailjs
         .sendForm(
-          "service_09y0d27",
-          "template_xatuhhj",
+          "service_9g7zues",
+          "template_i0cda6o",
           e.target,
-          "user_L9DWJeTPuHpzPxrX7MVr8"
+          "user_23MSBgUbni3voZxl0Q5vd"
         )
         .then(
           (result) => {
