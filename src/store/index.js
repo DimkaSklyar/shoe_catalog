@@ -68,7 +68,7 @@ export default new Vuex.Store({
     },
     async getBrands({ commit }) {
       try {
-        const { data } = await axios.get("http://localhost:3001/brands");
+        const { data } = await axios.get("http://31.44.3.29:3001/brands");
         commit("SET_BRANDS", data);
       } catch (error) {
         console.log(error);
@@ -76,7 +76,7 @@ export default new Vuex.Store({
     },
     async getCategories({ commit }) {
       try {
-        const { data } = await axios.get("http://localhost:3001/categories");
+        const { data } = await axios.get("http://31.44.3.29:3001/categories");
         commit("SET_CATEGORIES", data);
       } catch (error) {
         console.log(error);
@@ -85,7 +85,7 @@ export default new Vuex.Store({
     async getProduct({ commit }, params) {
       try {
         const { data, headers } = await axios.get(
-          "http://localhost:3001/products",
+          "http://31.44.3.29:3001/products",
           {
             params,
           }
@@ -101,7 +101,7 @@ export default new Vuex.Store({
     async getNewProduct({ commit }) {
       try {
         const { data } = await axios.get(
-          "http://localhost:3001/products?new=true&_limit=4"
+          "hhttp://31.44.3.29:3001/products?new=true&_limit=4"
         );
         commit("SET_NEW_PRODUCTS", data);
       } catch (error) {
@@ -111,7 +111,7 @@ export default new Vuex.Store({
     async getProductFromCategory({ commit }, params) {
       try {
         const { data, headers } = await axios.get(
-          `http://localhost:3001/categories/${params.categoryId}`,
+          `http://31.44.3.29:3001/categories/${params.categoryId}`,
           {
             params: params.query,
           }
@@ -127,7 +127,7 @@ export default new Vuex.Store({
     async getProductFromBrands({ commit }, params) {
       try {
         const { data, headers } = await axios.get(
-          `http://localhost:3001/brands/${params.brandId}`,
+          `http://31.44.3.29:3001/brands/${params.brandId}`,
           {
             params: params.query,
           }
@@ -143,7 +143,7 @@ export default new Vuex.Store({
     async getAllProduct({ commit }, params) {
       try {
         const { data, headers } = await axios.get(
-          "http://localhost:3001/products",
+          "http://31.44.3.29:3001/products",
           {
             params,
           }
@@ -169,7 +169,7 @@ export default new Vuex.Store({
       });
       commit("SET_PRODUCTS", newList);
       try {
-        await axios.patch(`http://localhost:3001/products/${payload.id}`, {
+        await axios.patch(`http://31.44.3.29:3001/products/${payload.id}`, {
           wishList: payload.isWish,
         });
       } catch (error) {
@@ -179,7 +179,7 @@ export default new Vuex.Store({
     async getWishList({ commit }) {
       try {
         const { data } = await axios.get(
-          `http://localhost:3001/products?wishList=true`
+          `http://31.44.3.29:3001/products?wishList=true`
         );
         commit("SET_WISHLIST", data);
       } catch (error) {

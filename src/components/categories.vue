@@ -27,7 +27,7 @@ export default {
     };
   },
   async mounted() {
-    const { data } = await axios.get("http://localhost:3001/categories");
+    const { data } = await axios.get("http://31.44.3.29:3001/categories");
     this.categories = data;
   },
 };
